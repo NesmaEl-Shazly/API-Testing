@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "df44f4d7-2123-4f0e-acc5-615244a322b1",
+		"name": "JSONPlaceholder_APITest_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19692916"
+	},
+	"item": [
+		{
+			"name": "Post_UserData_ValidRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"Check that user is created and Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Check that Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check name is added correctly\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Nesma Mohamed Shazly\");\r",
+							"});\r",
+							"pm.test(\"Check UserName is added correctly\", function () {\r",
+							"    pm.expect(jsonData.username).to.eql(\"Nesma.shazly\");\r",
+							"});\r",
+							"pm.test(\"Check email is added correctly\", function () {\r",
+							"    pm.expect(jsonData.email).to.eql(\"nesmamohamedyousef@gmail.com\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \r\n        \"name\": \"Nesma Mohamed Shazly\",\r\n        \"username\": \"Nesma.shazly\",\r\n        \"email\": \"nesmamohamedyousef@gmail.com\"\r\n\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
